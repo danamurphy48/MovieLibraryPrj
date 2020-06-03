@@ -12,12 +12,22 @@
 
 <form id="my-form">
     <input type="text" name="title" placeholder="Title" />
+    <input type="text" name="genre" placeholder="Genre" />
     <input type="text" name="director" placeholder="Director" />
 
     <button type="submit">Submit</button>
 </form>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<button type="button" onclick="getAllMovies()">Get All Movies</button>
+
+<input type="text" name="" id="demoInput" /> <!-- ids are good for styles and putting in modifiers-->
+<button type="button" onclick="jqDemo()">Show off jQuery</button>
+
+<div id="displayMoviesDiv"></div>
+
+<input type="text" id="demoInput"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
