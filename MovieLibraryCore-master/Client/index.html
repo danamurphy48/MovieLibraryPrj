@@ -5,14 +5,18 @@
     <meta charset="utf-8">
 </head>
 <body>
+<h1>Movie Library</h1>
 
+<button type="button" onclick="getAllMovies()">Get All Movies</button>
+
+<section>
     <table id="displayMovieData"> 
         <thead>
             <tr>
                 <th>Title</th> 
                 <th>Genre</th> 
                 <th>Director</th> 
-                <th>Options</th>
+                <!--<th>Options</th> -->
             </tr>
             </thead> 
             <tbody> 
@@ -20,18 +24,19 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <button type="submit">Edit</button>
                 </tr> 
 
             </tbody> 
      </table>
-
+     
+</section>
 
 <div id="response">
     <pre></pre>
 </div>
 
 <form id="my-form">
+    <p>If you would like to add a movie, please input the information here.</p>
     <input type="text" name="title" placeholder="Title" />
     <input type="text" name="genre" placeholder="Genre" />
     <input type="text" name="director" placeholder="Director" />
@@ -40,7 +45,8 @@
 </form>
 
 <form id="my-IdForm">
-    <input type="text" name="movieId" placeholder="Movie Id" /> <!--Hidden -->
+    <p>To edit movie details:</p>
+    <input hidden type="text" name="movieId" placeholder="Movie Id" /> <!--Hidden -->
     <input type="text" name="title" placeholder="Title" />
     <input type="text" name="genre" placeholder="Genre" />
     <input type="text" name="director" placeholder="Director" />
@@ -49,18 +55,19 @@
 </form>
 
 
-<button type="button" onclick="getAllMovies()">Get All Movies</button>
+<!--
 <button type="button" onclick="getSingleMovie()">Get Single Movies</button>
 <button id="edit" type="button" onclick="editMovie()">Edit a Movie</button>
-
+-->
+<!-- 
 <table>
-<input type="text" name="" id="demoInput" /> <!-- ids are good for styles and putting in modifiers-->
+<input type="text" name="" id="demoInput" />  ids are good for styles and putting in modifiers
 
 </table>
+-->
+<!-- <button type="button" onclick="jqDemo()">Show off jQuery</button> -->
 
-<button type="button" onclick="jqDemo()">Show off jQuery</button>
-
-<div id="displayMoviesDiv"></div>
+<!--<div id="displayMoviesDiv"></div>-->
 
 <!--<input type="text" id="demoInput"/>-->
 

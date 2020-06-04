@@ -33,7 +33,7 @@ function getAllMovies(){
     //as soon as this ajax runs it's going to make a request to the api
     //if api runs successfully status 200 then runs success
     //otherwise 
-    $("#displayMoviesDiv").html(""); //doesn't allow it to continuually multiply itself
+    $("#displayMovieData").html(""); //doesn't allow it to continuually multiply itself
     $.ajax({
         url: 'https://localhost:44325/api/movie',
         contentType: 'application/json', 
@@ -73,7 +73,7 @@ function getSingleMovie(){
         type: 'get',
         success: function( data, textStatus, jQxhr ){
             console.log("Change a movie!");
-            $("#displayMoviesDiv").append(`<tr><td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td> Director: ${data[movieId]["director"]}</td> </tr>`)
+            $("#displayMovieData").append(`<tr><td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td> Director: ${data[movieId]["director"]}</td> </tr>`)
         },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
@@ -99,7 +99,7 @@ function editMovie(){
         success: function( data, textStatus, jQxhr ){
             console.log("Edit a movie!");
             $('#response pre').html( data );
-            $("#displayMoviesDiv").append(`<tr> <td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td>Director: ${data[movieId]["director"]}</td></tr>`)
+            $("#displayMovieData").append(`<tr> <td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td>Director: ${data[movieId]["director"]}</td></tr>`)
         },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
