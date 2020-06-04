@@ -6,6 +6,27 @@
 </head>
 <body>
 
+    <table id="displayMovieData"> 
+        <thead>
+            <tr>
+                <th>Title</th> 
+                <th>Genre</th> 
+                <th>Director</th> 
+                <th>Options</th>
+            </tr>
+            </thead> 
+            <tbody> 
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <button type="submit">Edit</button>
+                </tr> 
+
+            </tbody> 
+     </table>
+
+
 <div id="response">
     <pre></pre>
 </div>
@@ -18,8 +39,19 @@
     <button type="submit">Submit</button>
 </form>
 
+<form id="my-IdForm">
+    <input type="text" name="movieId" placeholder="Movie Id" /> <!--Hidden -->
+    <input type="text" name="title" placeholder="Title" />
+    <input type="text" name="genre" placeholder="Genre" />
+    <input type="text" name="director" placeholder="Director" />
+
+    <button type="submit">Submit</button>
+</form>
+
+
 <button type="button" onclick="getAllMovies()">Get All Movies</button>
 <button type="button" onclick="getSingleMovie()">Get Single Movies</button>
+<button id="edit" type="button" onclick="editMovie()">Edit a Movie</button>
 
 <input type="text" name="" id="demoInput" /> <!-- ids are good for styles and putting in modifiers-->
 <button type="button" onclick="jqDemo()">Show off jQuery</button>

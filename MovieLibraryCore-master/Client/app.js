@@ -39,13 +39,13 @@ function getAllMovies(){
         contentType: 'application/json', 
         type: 'get',
        // data: //when doing a get request, you don't need a data part
-        success: function( data, textStatus, jQxhr ){ //write more code for textstatus and jqxhr
-            $('#response pre').html( data );
+        success: function( data, textStatus, jQxhr ){ 
+           // $('#response pre').html( data );
             //test using console.log
             console.log("Success!");
             console.log(data);
             for( let i = 0; i <data.length; i++){
-            $("#displayMoviesDiv").append(`<p>Title: ${data[i]["title"]} Genre: ${data[i]["genre"]} Director: ${data[i]["director"]}</p>`)
+            $("#displayMovieData").append(`<tr> <td>${data[i]["title"]}</td>  <td>${data[i]["genre"]}</td> <td>${data[i]["director"]}</td> </tr>`)
             }                            // $("#displayMoviesDiv").append(`<p>${data[0]["director"]}</p>`) would just get one director
   //we want to use a literal... something  //.val would overwrite everything
         },                                                                  //bc data is an array need to loop, for loop
@@ -68,12 +68,12 @@ $("demoInput").change(function() {  //event listener is working you just have to
 
 function getSingleMovie(){
     $.ajax({
-        url: 'https://localhost:44325/api/movie/*',
+        url: 'https://localhost:44325/api/movie/' + movieId,
         contentType: 'application/json', 
         type: 'get',
         success: function( data, textStatus, jQxhr ){
             console.log("Change a movie!");
-            $("#displayMoviesDiv").append(`<p>Title: ${data[i]["title"]} Genre: ${data[i]["genre"]} Director: ${data[i]["director"]}</p>`)
+            $("#displayMoviesDiv").append(`<tr><td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td> Director: ${data[movieId]["director"]}</td> </tr>`)
         },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
@@ -82,46 +82,30 @@ function getSingleMovie(){
 }
 
 function editMovie(){
+
+    function processForm( e ){ //make a new form
+        var dict = {    //grabbing stuff from object dict, then stringify object into JSON @data, like appending/putting data in the body of the request like we do in postman
+            MovieId : this["movieId"].val(), //$("#")val/html
+            Title : this["title"].val(),
+            Genre : this["genre"].val(),
+        	Director: this["director"].val()
+        };
+
     $.ajax({
-        url: 'https://localhost:44325/api/movie/*',
+        url: 'https://localhost:44325/api/movie',
         contentType: 'application/json', 
         type: 'put',
+        data: JSON.stringify(dict), //only have to do that for post and put
         success: function( data, textStatus, jQxhr ){
-            console.log("Change a movie!");
-            $("#displayMoviesDiv").append(`<p>Title: ${data[i]["title"]} Genre: ${data[i]["genre"]} Director: ${data[i]["director"]}</p>`)
+            console.log("Edit a movie!");
+            $('#response pre').html( data );
+            $("#displayMoviesDiv").append(`<tr> <td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td>Director: ${data[movieId]["director"]}</td></tr>`)
         },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
         }
     });
+    e.preventDefault();
 }
-
-
-(function($){ //this isn't useful? can delete and (jQuery)
-    function processForm( e ){
-        var dict = {    //grabbing stuff from object dict, then stringify object into JSON @data, like appending/putting data in the body of the request like we do in postman
-            Title : this["title"].value,
-            Genre : this["genre"].value,
-        	Director: this["director"].value
-        };
-
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'put',
-            contentType: 'application/json',
-            data: JSON.stringify(dict), //only have to do that for post and put
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-                console.log("Movie added!");
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
-
-        e.preventDefault();
-    }
-
-    $('#my-form').submit( processForm ); //jQuery go look at this. .submit is an event listener waiting for this to be clicked
-})(jQuery);
+    $('#my-Idform').submit( processForm ); //make a new form
+}
