@@ -5,11 +5,14 @@
     <meta charset="utf-8">
 </head>
 <body>
+<section class ="TopSection">
+<div>
 <h1>Movie Library</h1>
 
 <button type="button" onclick="getAllMovies()">Get All Movies</button>
+<button onclick="editMovie()">Edit</button> 
+</div>
 
-<section>
     <table id="displayMovieData"> 
         <thead>
             <tr>
@@ -47,12 +50,15 @@
 <form id="my-IdForm">
     <p>To edit movie details:</p>
     <input hidden type="text" name="movieId" placeholder="Movie Id" /> <!--Hidden -->
-    <input type="text" name="title" placeholder="Title" />
-    <input type="text" name="genre" placeholder="Genre" />
-    <input type="text" name="director" placeholder="Director" />
+    <input type="text" placeholder="Edit Title" id="editTitle"/>
+    <input type="text"  placeholder="Edit Genre" id="editGenre" />
+    <input type="text"  placeholder="Edit Director" id="editDirector" />
 
-    <button type="submit">Submit</button>
+    <button onclick="editMovie()">Submit</button>
 </form>
+
+
+
 
 
 <!--

@@ -45,7 +45,13 @@ function getAllMovies(){
             console.log("Success!");
             console.log(data);
             for( let i = 0; i <data.length; i++){
-            $("#displayMovieData").append(`<tr> <td>${data[i]["title"]}</td>  <td>${data[i]["genre"]}</td> <td>${data[i]["director"]}</td> </tr>`)
+            $("#displayMovieData").append(`<tr> <input value=${i+1} type="hidden" id="movieId" />
+            <td> <input type="text" value="${data[i]["title"]}" id="editTitle" /></td>
+            <td> <input type="text" value= "${data[i]["genre"]}" id="editGenre" /></td> 
+            <td> <input type="text" value= "${data[i]["director"]}"id="editDirector" /></td> </tr>`)
+
+
+
             }                            // $("#displayMoviesDiv").append(`<p>${data[0]["director"]}</p>`) would just get one director
   //we want to use a literal... something  //.val would overwrite everything
         },                                                                  //bc data is an array need to loop, for loop
@@ -54,17 +60,6 @@ function getAllMovies(){
         }
     });
 }
-
-function jqDemo(){
-    let valueOfInput = $("#demoInput").val(); //use # to get an id
-    console.log(valueOfInput);
-
-    $("demoInput").val("Mia") //how to change what is put in the value, put it in quotes in the value
-}
-
-$("demoInput").change(function() {  //event listener is working you just have to click out of the input area
-    console.log($("demoInput").val());  //please listen to this "demoInput" and if it changes then do this. Event listener.
-});
 
 function getSingleMovie(){
     $.ajax({
@@ -81,16 +76,14 @@ function getSingleMovie(){
     });
 }
 
-function editMovie(){
-
-    function processForm( e ){ //make a new form
+function editMovie( e ){ 
         var dict = {    //grabbing stuff from object dict, then stringify object into JSON @data, like appending/putting data in the body of the request like we do in postman
-            MovieId : this["movieId"].val(), //$("#")val/html
-            Title : this["title"].val(),
-            Genre : this["genre"].val(),
-        	Director: this["director"].val()
+            MovieId: document.getElementById("movieId").value,
+            Title: document.getElementById("editTitle").value
+         //   Genre: this["genre"].val(),
+        //	Director: this["director"].val()
         };
-
+ console.log (dict)
     $.ajax({
         url: 'https://localhost:44325/api/movie',
         contentType: 'application/json', 
@@ -100,6 +93,8 @@ function editMovie(){
             console.log("Edit a movie!");
             $('#response pre').html( data );
             $("#displayMovieData").append(`<tr> <td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td>Director: ${data[movieId]["director"]}</td></tr>`)
+              $("#editTitle").val();
+        
         },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
@@ -107,5 +102,21 @@ function editMovie(){
     });
     e.preventDefault();
 }
-    $('#my-Idform').submit( processForm ); //make a new form
-}
+    $('#my-Idform').submit( editMovie ); 
+
+
+
+
+
+
+    //Notes from code along
+   // function jqDemo(){
+    //    let valueOfInput = $("#demoInput").val(); //use # to get an id
+     //   console.log(valueOfInput);
+    
+       // $("demoInput").val("Mia") //how to change what is put in the value, put it in quotes in the value
+    //}
+    
+    //$("demoInput").change(function() {  //event listener is working you just have to click out of the input area
+    //    console.log($("demoInput").val());  //please listen to this "demoInput" and if it changes then do this. Event listener.
+   // });
