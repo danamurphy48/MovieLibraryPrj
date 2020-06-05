@@ -45,11 +45,11 @@ function getAllMovies(){
             console.log("Success!");
             console.log(data);
             for( let i = 0; i <data.length; i++){
-            $("#displayMovieData").append(`<tr> <input value=${i+1} type="hidden" id="movieId" />
-            <td> <input type="text" value="${data[i]["title"]}" id="editTitle" /></td>
-            <td> <input type="text" value= "${data[i]["genre"]}" id="editGenre" /></td> 
-            <td> <input type="text" value= "${data[i]["director"]}"id="editDirector" /></td> </tr>`)
-
+            $("#displayMovieData").append
+            (`<tr> <input value=${i+1} type="hidden" id="movieId" />
+            <td> <input type="text" value="${data[i]["title"]}"id="editTitle" /></td>
+            <td> <input type="text" value="${data[i]["genre"]}"id="editGenre" /></td> 
+            <td> <input type="text" value="${data[i]["director"]}"id="editDirector" /></td> </tr>`)
 
 
             }                            // $("#displayMoviesDiv").append(`<p>${data[0]["director"]}</p>`) would just get one director
@@ -61,27 +61,12 @@ function getAllMovies(){
     });
 }
 
-function getSingleMovie(){
-    $.ajax({
-        url: 'https://localhost:44325/api/movie/' + movieId,
-        contentType: 'application/json', 
-        type: 'get',
-        success: function( data, textStatus, jQxhr ){
-            console.log("Change a movie!");
-            $("#displayMovieData").append(`<tr><td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td> Director: ${data[movieId]["director"]}</td> </tr>`)
-        },
-        error: function( jqXhr, textStatus, errorThrown ){
-            console.log( errorThrown );
-        }
-    });
-}
-
 function editMovie( e ){ 
-        var dict = {    //grabbing stuff from object dict, then stringify object into JSON @data, like appending/putting data in the body of the request like we do in postman
+        var dict = {    
             MovieId: document.getElementById("movieId").value,
-            Title: document.getElementById("editTitle").value
-         //   Genre: this["genre"].val(),
-        //	Director: this["director"].val()
+            Title: document.getElementById("editTitle").value,
+            Genre: document.getElementById("Genre").value,
+            Director: document.getElementById("editDirector").value
         };
  console.log (dict)
     $.ajax({
@@ -92,10 +77,14 @@ function editMovie( e ){
         success: function( data, textStatus, jQxhr ){
             console.log("Edit a movie!");
             $('#response pre').html( data );
-            $("#displayMovieData").append(`<tr> <td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td>Director: ${data[movieId]["director"]}</td></tr>`)
-              $("#editTitle").val();
-        
-        },
+            for( let i = 0; i <data.length; i++){
+                $("#displayMovieData").append
+                (`<tr> <input value=${i+1} type="hidden" id="movieId" />
+                <td> <input type="text" value="${data[i]["title"]}" id="editTitle" /></td>
+                <td> <input type="text" value= "${data[i]["genre"]}" id="editGenre" /></td> 
+                <td> <input type="text" value= "${data[i]["director"]}"id="editDirector" /></td> </tr>`)
+        }
+    },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
         }
@@ -106,6 +95,23 @@ function editMovie( e ){
 
 
 
+
+//we may not need this.
+    function getSingleMovie(){
+        $.ajax({
+            url: 'https://localhost:44325/api/movie/' + movieId,
+            contentType: 'application/json', 
+            type: 'get',
+            success: function( data, textStatus, jQxhr ){
+                console.log("Change a movie!");
+                $("#displayMovieData").append(`<tr><td>Title: ${data[movieId]["title"]}</td> <td>Genre: ${data[movieId]["genre"]}</td> <td> Director: ${data[movieId]["director"]}</td> </tr>`)
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        });
+    }
+    
 
 
 
