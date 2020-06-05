@@ -60,7 +60,7 @@ function getAllMovies(){
         }
     });
 }
-
+(function($){ 
 function editMovie( e ){ 
         var dict = {    
             MovieId: document.getElementById("movieId").value,
@@ -70,7 +70,8 @@ function editMovie( e ){
         };
  console.log (dict)
     $.ajax({
-        url: 'https://localhost:44325/api/movie',
+        url: 'https://localhost:44325/api/movie'+ movieId,
+        dataType: 'text',
         contentType: 'application/json', 
         type: 'put',
         data: JSON.stringify(dict), //only have to do that for post and put
@@ -83,16 +84,20 @@ function editMovie( e ){
                 <td> <input type="text" value="${data[i]["title"]}" id="editTitle" /></td>
                 <td> <input type="text" value= "${data[i]["genre"]}" id="editGenre" /></td> 
                 <td> <input type="text" value= "${data[i]["director"]}"id="editDirector" /></td> </tr>`)
+               // <button type= "button onclick ="${data[i]["movieid"]} >Edit</button>
         }
+     
     },
         error: function( jqXhr, textStatus, errorThrown ){
             console.log( errorThrown );
         }
     });
     e.preventDefault();
-}
-    $('#my-Idform').submit( editMovie ); 
 
+    $("#displayMovieData").Submit( editMovie ); 
+  
+}
+})(jQuery);
 
 
 

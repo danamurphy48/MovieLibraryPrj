@@ -1,18 +1,82 @@
-.TopSection{
-    display:flex;
+
+.getbtn{
+    
+        background-color:ivory;
+        color:black;
+        border-radius:8px;
+        text-align: center;
+        font-size: 20px;
+        font-weight:bold;
+        padding:13px 76px;
+        display: block;
+        max-width: 300px;
+        margin: auto;
+}
+
+.editbtn{
+    
+    background-color: ivory;
+    color:black;
+    border-radius:8px;
+    padding: 1px 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight:bold;
+    display: block;
+    max-width: 300px;
+    
+}
+.addbtn{
+    
+    background-color: ivory;
+    color:black;
+    border-radius:8px;
+    padding: 1px 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight:bold;
+    display: block;
+    max-width: 300px;
+    
+}
+
+.editbtn:hover, .addbtn:hover, .getbtn:hover {
+    background-color: rgb(235, 225, 186);
 }
 
 h1 {
-    color: red;
+    color:black;
     font-family: arial, sans-serif;
-    font-size: 16px;
+    font-size: 50px;
     font-weight: bold;
-    display: flex;
-    align-content: center;
+    text-align: center;
+    
     }
 
-
 #displayMovieData{
-    justify-content: center;
+    width: 100%;
+}
+#displayMovieData tr:hover {
+    background-color: lightgray;
+    border-bottom: 1px solid #ddd;
+    border-collapse:collapse
 }
 
+th, td {
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: medium;
+  }
+
+input[type=text] {
+    background-color: whitesmoke;
+    color:black;
+    border: whitesmoke;
+    font-size: 1.5em;
+  }
+
+  p{
+    font-family: arial, sans-serif;
+    font-size: 20px;
+   
+  }

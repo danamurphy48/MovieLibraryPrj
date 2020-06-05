@@ -3,21 +3,20 @@
 <head>
     <title>jQuery AJAX POST Form</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-<section class ="TopSection">
-<div>
-<h1>Movie Library</h1>
+<section>
 
-<button type="button" onclick="getAllMovies()">Get All Movies</button>
-<button onclick="editMovie()">Edit</button> 
+<h1>Welcome to the Movie Library</h1>
+<div class = "centerButtons">
+<button class = "getbtn" type="button" onclick="getAllMovies()">Get All Movies</button>
+<br>
 </div>
-
+</div class = "table">
     <table id="displayMovieData"> 
-        <thead>
             <tr>
             </tr>
-            </thead> 
             <tbody> 
                  <tr>
                     <td></td>
@@ -27,30 +26,33 @@
 
             </tbody> 
      </table>
-     
+  <div></div>   
 </section>
+
 
 <div id="response">
     <pre></pre>
 </div>
-
+<p>To edit, simply change the desired fields and click "Sumbit Edit"</p>
+<button class = "editbtn" onclick="editMovie()">Submit Edit</button> 
 <form id="my-form">
-    <p>If you would like to add a movie, please input the information here.</p>
+    <p>Please Add a movie here:</p>
+    <br>
     <input type="text" name="title" placeholder="Title" />
     <input type="text" name="genre" placeholder="Genre" />
     <input type="text" name="director" placeholder="Director" />
-
-    <button type="submit">Submit</button>
 </form>
+<br>
+<button class ="addbtn" type="submit">Submit Add</button>
 
 <form id="my-IdForm">
-    <p>To edit movie details:</p>
+  
     <input hidden type="text" name="movieId" placeholder="Movie Id" /> <!--Hidden -->
     <input type="text" placeholder="Edit Title" id="editTitle"/>
     <input type="text"  placeholder="Edit Genre" id="editGenre" />
     <input type="text"  placeholder="Edit Director" id="editDirector" />
 
-    <button onclick="editMovie()">Submit</button>
+
 </form>
 
 
